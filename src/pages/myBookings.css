@@ -1,0 +1,328 @@
+.mybookings-page {
+  padding: 80px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1a202c 50%, #0f172a 100%);
+}
+
+.mybookings-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.mybookings-subtitle {
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 36px;
+  font-size: 1rem;
+}
+
+.mybookings-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #6366f1;
+  font-weight: 700;
+  margin: 40px 0;
+}
+
+.mybookings-empty {
+  background: white;
+  border: 2px solid rgba(124, 58, 237, 0.2);
+  border-radius: 24px;
+  padding: 48px 32px;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 560px;
+  box-shadow: 0 16px 40px rgba(124, 58, 237, 0.15);
+}
+
+.mybookings-empty-icon {
+  font-size: 2.2rem;
+  color: #22c55e;
+  margin-bottom: 10px;
+}
+
+.btn-explore-events {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  padding: 12px 28px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.btn-explore-events:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4);
+  color: white;
+}
+
+/* Event Ticket Card */
+.event-ticket-card {
+  border-radius: 20px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  overflow: hidden;
+  background: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.event-ticket-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.4);
+}
+
+.ticket-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.ticket-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.event-ticket-card:hover .ticket-image {
+  transform: scale(1.05);
+}
+
+.ticket-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+.ticket-status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.75rem;
+  z-index: 10;
+}
+
+.ticket-body {
+  padding: 24px;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.event-name-ticket {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.ticket-venue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.ticket-icon {
+  color: #7c3aed;
+  font-size: 0.95rem;
+}
+
+/* Ticket Details Grid */
+.ticket-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 18px 0;
+  padding: 16px;
+  background: rgba(124, 58, 237, 0.05);
+  border-radius: 12px;
+}
+
+.ticket-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ticket-detail-item .detail-icon {
+  color: #7c3aed;
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.ticket-detail-item small {
+  display: block;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ticket-contact-info {
+  padding: 12px 16px;
+  background: rgba(148, 163, 184, 0.08);
+  border-radius: 10px;
+  margin: 14px 0;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Ticket Actions */
+.ticket-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancel-ticket,
+.btn-view-event {
+  flex: 1;
+  border-radius: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel-ticket {
+  border-color: #ef4444 !important;
+  color: #ef4444 !important;
+}
+
+.btn-cancel-ticket:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #dc2626 !important;
+  color: #dc2626 !important;
+  transform: translateY(-2px);
+}
+
+.btn-view-event {
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  border: none;
+  color: white !important;
+}
+
+.btn-view-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mybookings-page {
+    padding: 60px 15px;
+  }
+
+  .mybookings-title {
+    font-size: 2rem;
+  }
+
+  .ticket-details-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .ticket-actions {
+    flex-direction: column;
+  }
+
+  .btn-cancel-ticket,
+  .btn-view-event {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .mybookings-empty {
+    padding: 32px 20px;
+  }
+
+  .event-name-ticket {
+    font-size: 1.15rem;
+  }
+
+  .ticket-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail-item {
+  margin-bottom: 6px;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.booking-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.45rem 0.7rem;
+}
+
+@media (max-width: 768px) {
+  .mybookings-title {
+    font-size: 1.8rem;
+  }
+
+  .mybookings-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .booking-card-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .booking-actions {
+    flex-direction: column;
+  }
+}

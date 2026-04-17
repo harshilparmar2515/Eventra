@@ -1,0 +1,154 @@
+import { Container, Nav, Navbar, Button, Dropdown, Image } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../Firebase/Firebase";
+import { signOut } from "firebase/auth";
+import { useContext, useEffect, useState } from "react";
+import { authContext } from "./context/AuthContext";
+import { useToast } from "./ToastContext";
+import ThemeToggle from "./ThemeToggle";
+import {
+  FiLogOut,
+  FiUser,
+  FiMenu,
+  FiHome,
+  FiInfo,
+  FiMapPin,
+  FiTrendingUp,
+  FiLogIn,
+} from "react-icons/fi";
+import "./navbar.css";
+
+function ModernNavbar() {
+  const { user, isAdmin } = useContext(authContext);
+  const { addToast } = useToast();
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+      addToast("Logged out successfully ✓", "success");
+    } catch (error) {
+      addToast("Logout failed", "error");
+    }
+  };
+
+  return (
+    <>
+      <Navbar
+        expand="lg"
+        className={`navbar-modern ${scrolled ? "scrolled" : ""}`}
+        sticky="top"
+      >
+        <Container fluid className="px-4">
+          {/* Logo */}
+          <Navbar.Brand as={Link} to="/" className="navbar-brand-modern">
+            <img src="logo.svg" alt="logo" height={45} />
+            <span className="brand-text">Eventra</span>
+          </Navbar.Brand>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            {/* Navigation Links */}
+            <Nav className="mx-auto nav-links">
+              <Nav.Link as={Link} to="/" className="nav-link-modern">
+                <FiHome className="nav-icon" />
+                <span>Home</span>
+              </Nav.Link>
+              <Nav.Link as={Link} to="/events" className="nav-link-modern">
+                <FiInfo className="nav-icon" />
+                <span>Events</span>
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard" className="nav-link-modern">
+                <FiTrendingUp className="nav-icon" />
+                <span>Dashboard</span>
+              </Nav.Link>
+              <Nav.Link as={Link} to="/contact" className="nav-link-modern">
+                <FiMapPin className="nav-icon" />
+                <span>Contact</span>
+              </Nav.Link>
+            </Nav>
+
+            {/* Auth Actions */}
+            <Nav className="ms-auto nav-auth align-items-center gap-2">
+              <ThemeToggle />
+              {user ? (
+                <>
+                  <Nav.Link as={Link} to="/my-bookings" className="nav-link-modern">
+                    My Events
+                  </Nav.Link>
+                  {isAdmin && (
+                    <Nav.Link as={Link} to="/admin" className="nav-link-modern">
+                      Admin
+                    </Nav.Link>
+                  )}
+
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      as="button"
+                      className="btn-user-avatar"
+                      id="dropdown-user"
+                    >
+                      {user.photoURL ? (
+                        <Image
+                          src={user.photoURL}
+                          alt="User"
+                          className="avatar-img"
+                        />
+                      ) : (
+                        <div className="avatar-placeholder">
+                          <FiUser />
+                        </div>
+                      )}
+                      <span className="user-email">{user.email?.split("@")[0]}</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu align="end">
+                      <Dropdown.Item disabled>
+                        <strong>{user.email}</strong>
+                      </Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item as={Link} to="/my-bookings">
+                        📌 My Events
+                      </Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item onClick={handleLogout} className="text-danger">
+                        <FiLogOut className="me-2" />
+                        Logout
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </>
+              ) : (
+                <>
+                  <Button
+                    as={Link}
+                    to="/auth"
+                    className="btn-login"
+                  >
+                    <FiLogIn className="me-2" />
+                    Login
+                  </Button>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  );
+}
+
+export default ModernNavbar;
