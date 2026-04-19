@@ -5,7 +5,6 @@ import { signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "./context/AuthContext";
 import { useToast } from "./ToastContext";
-import ThemeToggle from "./ThemeToggle";
 import {
   FiLogOut,
   FiUser,
@@ -83,7 +82,7 @@ function ModernNavbar() {
 
             {/* Auth Actions */}
             <Nav className="ms-auto nav-auth align-items-center gap-2">
-              <ThemeToggle />
+              
               {user ? (
                 <>
                   <Nav.Link as={Link} to="/my-bookings" className="nav-link-modern">

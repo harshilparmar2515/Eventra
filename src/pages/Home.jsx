@@ -95,7 +95,7 @@ const HomePage = () => {
             className="hero-video"
           >
             <source
-              src="Bg-Video.mp4"
+              src="https://www.pexels.com/download/video/17393125/"
               type="video/mp4"
             />
           </video>
